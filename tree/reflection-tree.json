@@ -21,13 +21,19 @@
     "type": "decision",
     "routing": [
       { "condition": "A1_OPEN.answer in ['productive', 'adjusted']", "target": "A1_Q_AGENCY_H" },
-      { "condition": "A1_OPEN.answer in ['frustrating', 'messes']", "target": "A1_Q_AGENCY_L" }
+      { "condition": "A1_OPEN.answer in ['frustrating', 'messes']", "target": "A1_EMOTIONAL_ACKNOWLEDGE" }
     ]
+  },
+  {
+    "id": "A1_EMOTIONAL_ACKNOWLEDGE",
+    "type": "reflection",
+    "text": "You described today as '{A1_OPEN.answer_label}'. That's heavy. When days feel that heavy, our brains naturally focus on what went wrong or what we couldn't control. That's not a flaw—it's protection.",
+    "target": "A1_Q_AGENCY_L"
   },
   {
     "id": "A1_Q_AGENCY_H",
     "type": "question",
-    "text": "You said the day felt '{A1_OPEN.answer_label}'. During a moment that went well today, what drove that positive outcome?",
+    "text": "During a moment that went well today, what drove that positive outcome?",
     "options": [
       { "label": "I anticipated what was needed and prepared well", "value": "internal_prep", "signal": "axis1:internal" },
       { "label": "I adapted my approach when priorities shifted", "value": "internal_adapt", "signal": "axis1:internal" },
@@ -38,7 +44,7 @@
   {
     "id": "A1_Q_AGENCY_L",
     "type": "question",
-    "text": "You mentioned the day was '{A1_OPEN.answer_label}'. When things went sideways, what was your initial instinct?",
+    "text": "When things got difficult, what was your initial instinct?",
     "options": [
       { "label": "I looked for what I could control and salvaged it", "value": "internal_salvage", "signal": "axis1:internal" },
       { "label": "I figured out a workaround to keep moving", "value": "internal_workaround", "signal": "axis1:internal" },
@@ -50,14 +56,21 @@
     "id": "A1_D2",
     "type": "decision",
     "routing": [
-      { "condition": "axis1.internal >= axis1.external", "target": "A1_R_INT" },
+      { "condition": "axis1.internal >= axis1.external and A1_OPEN.answer in ['frustrating', 'messes']", "target": "A1_REFLECTION_PERFECTIONISM" },
+      { "condition": "axis1.internal >= axis1.external and A1_OPEN.answer in ['productive', 'adjusted']", "target": "A1_R_INT" },
       { "condition": "axis1.internal < axis1.external", "target": "A1_R_EXT" }
     ]
   },
   {
+    "id": "A1_REFLECTION_PERFECTIONISM",
+    "type": "reflection",
+    "text": "Look at what you just told me: you said '{A1_Q_AGENCY_L.answer_label}'. You're taking responsibility for navigating the day—which is good. But notice if you're taking responsibility for *everything that went wrong*. Not everything is on you. Tomorrow, try distinguishing between 'things I could influence' and 'things I needed to accept.'",
+    "target": "BRIDGE_1_2"
+  },
+  {
     "id": "A1_R_INT",
     "type": "reflection",
-    "text": "You're seeing your hand in how today played out. Even when things weren't perfect, you stayed in the driver's seat. That's a strong internal locus of control.",
+    "text": "You chose '{A1_Q_AGENCY_H.answer_label}'. You're seeing your hand in how today played out. Even when things weren't perfect, you stayed in the driver's seat. That's a strong internal locus of control.",
     "target": "BRIDGE_1_2"
   },
   {
@@ -105,7 +118,7 @@
   {
     "id": "A2_Q_CONTRIB",
     "type": "question",
-    "text": "You mentioned '{A2_OPEN.answer_label}'. Which of these describes why you took that approach?",
+    "text": "You chose '{A2_OPEN.answer_label}'. Which of these describes why you took that approach?",
     "options": [
       { "label": "Because building up the team makes all of our work better", "value": "build_team", "signal": "axis2:contribution" },
       { "label": "Because the work simply needed to get done", "value": "work_done", "signal": "axis2:contribution" },
@@ -124,7 +137,7 @@
   {
     "id": "A2_R_CONTRIB",
     "type": "reflection",
-    "text": "You're operating from an orientation of contribution. You are focusing on what you can give to the system and the team, rather than waiting to see what the system will give you.",
+    "text": "You chose '{A2_OPEN.answer_label}' — and your rationale was '{A2_Q_CONTRIB.answer_label}'. That's the definition of contribution. You are focusing on what you can give to the system and the team, rather than waiting to see what the system will give you.",
     "target": "BRIDGE_2_3"
   },
   {
@@ -191,13 +204,19 @@
   {
     "id": "A3_R_ALTRO",
     "type": "reflection",
-    "text": "Your radius of concern is wide. By holding others in view—whether the team or the customer—you transcend immediate self-interest. This altrocentric mindset often dilutes personal stress because you're connected to something larger.",
-    "target": "SUMMARY_PREP"
+    "text": "Your radius of concern is wide. By holding others in view, you transcend immediate self-interest. This altrocentric mindset often dilutes personal stress because you're connected to something larger.",
+    "target": "TRAJECTORY"
   },
   {
     "id": "A3_R_SELF",
     "type": "reflection",
     "text": "When we operate highly self-centrically, every small friction feels like a personal threat. Notice tomorrow if widening your lens—asking 'What does the team need?'—actually lightens your personal burden.",
+    "target": "TRAJECTORY"
+  },
+  {
+    "id": "TRAJECTORY",
+    "type": "reflection",
+    "text": "When you started this session, you were focused on '{A1_OPEN.answer_label}'. By the end, you're considering '{A3_OPEN.answer_label}'. That's movement. That's reflection working.",
     "target": "SUMMARY_PREP"
   },
   {
@@ -210,7 +229,57 @@
   {
     "id": "SUMMARY",
     "type": "summary",
-    "text": "Let's summarize today:\n\nLocus: You leaned toward an {axis1.dominant} locus of control.\nOrientation: Your focus leaned toward {axis2.dominant}.\nRadius: Your perspective today was predominantly {axis3.dominant}.\n\nSmall, structured thinking builds better habits. Take these insights into tomorrow.",
+    "syntheses": [
+      {
+        "condition": "axis1.dominant == 'internal' and axis2.dominant == 'contribution' and axis3.dominant == 'altrocentric'",
+        "narrative": "You see your choices. You give without keeping score. And you think about the team and the mission. That's rare. That's the person everyone wants to work with.",
+        "edge_case": "The trap: you might burn out by giving too much. Tomorrow, notice: are you building something, or just filling holes others left?",
+        "forward": "Stay curious about what you're building, not just what you're fixing."
+      },
+      {
+        "condition": "axis1.dominant == 'external' and axis2.dominant == 'entitlement' and axis3.dominant == 'selfcentric'",
+        "narrative": "Today felt like the world was working against you. And when that happens, we tighten up—focus on what we're not getting instead of what we could build.",
+        "edge_case": "This isn't permanent. It's a mood, not your character.",
+        "forward": "Tomorrow, start with one small choice you know you can make. See if it opens things up."
+      },
+      {
+        "condition": "axis1.dominant == 'internal' and axis2.dominant == 'entitlement' and axis3.dominant == 'altrocentric'",
+        "narrative": "You see your choices, you care about the mission—but today it felt like your effort went unnoticed. That gap between effort and recognition stings.",
+        "edge_case": "Real question: are you doing this work for the team, or for the recognition? Both are human. But the answer shapes everything else.",
+        "forward": "Test: tomorrow, do something extra for the mission, not for the credit. Notice what that feels like."
+      },
+      {
+        "condition": "axis1.dominant == 'internal' and axis2.dominant == 'contribution' and axis3.dominant == 'selfcentric'",
+        "narrative": "You navigated today well. You gave something. But you're still holding it pretty close—'my work', 'my effort', 'my impact'. Nothing wrong with that. But there's more available if you open the circle.",
+        "edge_case": "You're not selfish. You're just not yet thinking beyond your own work.",
+        "forward": "Tomorrow, notice how your work ripples into others' days. That awareness is the beginning of something bigger."
+      },
+      {
+        "condition": "axis1.dominant == 'external' and axis2.dominant == 'contribution' and axis3.dominant == 'altrocentric'",
+        "narrative": "Even when things felt out of your hands today, you still showed up for others and the mission. That takes intense resilience.",
+        "edge_case": "Be careful of martyrdom. You can give a lot without accepting that you are powerless.",
+        "forward": "Tomorrow, find one area where you can legally say 'no' to take back some boundaries."
+      },
+      {
+        "condition": "axis1.dominant == 'internal' and axis2.dominant == 'entitlement' and axis3.dominant == 'selfcentric'",
+        "narrative": "You are a driver, but your drive is heavily focused inward right now. You know you can execute, but you're intensely focused on the credit you deserve.",
+        "edge_case": "This mindset often alienates colleagues over time.",
+        "forward": "Tomorrow, deliberately pass credit over to a teammate for something you both worked on. Watch what happens."
+      },
+      {
+        "condition": "axis1.dominant == 'external' and axis2.dominant == 'entitlement' and axis3.dominant == 'altrocentric'",
+        "narrative": "You care deeply about the mission, which makes it incredibly frustrating when the system doesn't reward you or actively blocks your path. You feel owed by an unfair system.",
+        "edge_case": "Waiting for a broken system to be fair will exhaust you.",
+        "forward": "Tomorrow, stop tracking what the organization is failing to give you, and just focus on the mission."
+      },
+      {
+        "condition": "axis1.dominant == 'external' and axis2.dominant == 'contribution' and axis3.dominant == 'selfcentric'",
+        "narrative": "You're attempting to give, but you feel completely tossed around by the system and are internalizing the friction as a personal assault.",
+        "edge_case": "Your empathy is high, but your locus of control is depleted.",
+        "forward": "Tomorrow, draw a hard box around what you can control. Live inside the box."
+      }
+    ],
+    "default": "Today you showed a mix of internal and external locus, contribution and entitlement, self-focus and altrocentrism. That's human. What's interesting: which direction do you want to lean tomorrow?",
     "target": "END"
   },
   {
