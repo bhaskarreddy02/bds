@@ -1,0 +1,221 @@
+[
+  {
+    "id": "START",
+    "type": "start",
+    "text": "Good evening. Welcome to your daily reflection. Let's look at your day.",
+    "target": "A1_OPEN"
+  },
+  {
+    "id": "A1_OPEN",
+    "type": "question",
+    "text": "How would you describe today generally?",
+    "options": [
+      { "label": "Productive and largely went as expected", "value": "productive" },
+      { "label": "I adjusted to some unexpected challenges", "value": "adjusted" },
+      { "label": "Frustrating and chaotic", "value": "frustrating" },
+      { "label": "Mostly dealing with other people's messes", "value": "messes" }
+    ]
+  },
+  {
+    "id": "A1_D1",
+    "type": "decision",
+    "routing": [
+      { "condition": "A1_OPEN.answer in ['productive', 'adjusted']", "target": "A1_Q_AGENCY_H" },
+      { "condition": "A1_OPEN.answer in ['frustrating', 'messes']", "target": "A1_Q_AGENCY_L" }
+    ]
+  },
+  {
+    "id": "A1_Q_AGENCY_H",
+    "type": "question",
+    "text": "You said the day felt '{A1_OPEN.answer_label}'. During a moment that went well today, what drove that positive outcome?",
+    "options": [
+      { "label": "I anticipated what was needed and prepared well", "value": "internal_prep", "signal": "axis1:internal" },
+      { "label": "I adapted my approach when priorities shifted", "value": "internal_adapt", "signal": "axis1:internal" },
+      { "label": "The environment or timing was favorable", "value": "external_favorable", "signal": "axis1:external" },
+      { "label": "My team handled the hardest parts", "value": "external_team", "signal": "axis1:external" }
+    ]
+  },
+  {
+    "id": "A1_Q_AGENCY_L",
+    "type": "question",
+    "text": "You mentioned the day was '{A1_OPEN.answer_label}'. When things went sideways, what was your initial instinct?",
+    "options": [
+      { "label": "I looked for what I could control and salvaged it", "value": "internal_salvage", "signal": "axis1:internal" },
+      { "label": "I figured out a workaround to keep moving", "value": "internal_workaround", "signal": "axis1:internal" },
+      { "label": "I waited for the person responsible to fix it", "value": "external_wait", "signal": "axis1:external" },
+      { "label": "I felt stuck because the system is broken", "value": "external_stuck", "signal": "axis1:external" }
+    ]
+  },
+  {
+    "id": "A1_D2",
+    "type": "decision",
+    "routing": [
+      { "condition": "axis1.internal >= axis1.external", "target": "A1_R_INT" },
+      { "condition": "axis1.internal < axis1.external", "target": "A1_R_EXT" }
+    ]
+  },
+  {
+    "id": "A1_R_INT",
+    "type": "reflection",
+    "text": "You're seeing your hand in how today played out. Even when things weren't perfect, you stayed in the driver's seat. That's a strong internal locus of control.",
+    "target": "BRIDGE_1_2"
+  },
+  {
+    "id": "A1_R_EXT",
+    "type": "reflection",
+    "text": "A tough day pulls attention outward—to the system, the chaos, or what others did to create drag. Somewhere in there, though, you made a choice. That's where your agency lies.",
+    "target": "BRIDGE_1_2"
+  },
+  {
+    "id": "BRIDGE_1_2",
+    "type": "bridge",
+    "text": "Now let's shift from how much agency you felt today—to what you gave and expected in return.",
+    "target": "A2_OPEN"
+  },
+  {
+    "id": "A2_OPEN",
+    "type": "question",
+    "text": "Think about an interaction you had today regarding work distribution or recognition. How did it feel?",
+    "options": [
+      { "label": "I did work that went largely unacknowledged", "value": "unacknowledged" },
+      { "label": "I felt annoyed that I carry more weight than some others", "value": "annoyed_weight" },
+      { "label": "I stepped in to help someone without being asked", "value": "help_unasked" },
+      { "label": "I focused on getting my deliverables over the line", "value": "deliverables" }
+    ]
+  },
+  {
+    "id": "A2_D1",
+    "type": "decision",
+    "routing": [
+      { "condition": "A2_OPEN.answer in ['unacknowledged', 'annoyed_weight']", "target": "A2_Q_ENTITLE" },
+      { "condition": "A2_OPEN.answer in ['help_unasked', 'deliverables']", "target": "A2_Q_CONTRIB" }
+    ]
+  },
+  {
+    "id": "A2_Q_ENTITLE",
+    "type": "question",
+    "text": "You mentioned feeling '{A2_OPEN.answer_label}'. When you think about what you deserve at work, where does that feeling come from?",
+    "options": [
+      { "label": "I work harder than most, so I expect better treatment or recognition", "value": "expect_treatment", "signal": "axis2:entitlement" },
+      { "label": "I feel the organization owes me for the sacrifices I make", "value": "owes_me", "signal": "axis2:entitlement" },
+      { "label": "I try to remind myself that recognition is earned, not guaranteed", "value": "earned_recog", "signal": "axis2:contribution" },
+      { "label": "I realize my frustration comes from wanting my contribution to matter", "value": "want_matter", "signal": "axis2:contribution" }
+    ]
+  },
+  {
+    "id": "A2_Q_CONTRIB",
+    "type": "question",
+    "text": "You mentioned '{A2_OPEN.answer_label}'. Which of these describes why you took that approach?",
+    "options": [
+      { "label": "Because building up the team makes all of our work better", "value": "build_team", "signal": "axis2:contribution" },
+      { "label": "Because the work simply needed to get done", "value": "work_done", "signal": "axis2:contribution" },
+      { "label": "Because I wanted leadership to notice my extra effort", "value": "want_notice", "signal": "axis2:entitlement" },
+      { "label": "Because it's unfair if I have to do it and others don't", "value": "unfair", "signal": "axis2:entitlement" }
+    ]
+  },
+  {
+    "id": "A2_D2",
+    "type": "decision",
+    "routing": [
+      { "condition": "axis2.contribution >= axis2.entitlement", "target": "A2_R_CONTRIB" },
+      { "condition": "axis2.contribution < axis2.entitlement", "target": "A2_R_ENTITLE" }
+    ]
+  },
+  {
+    "id": "A2_R_CONTRIB",
+    "type": "reflection",
+    "text": "You're operating from an orientation of contribution. You are focusing on what you can give to the system and the team, rather than waiting to see what the system will give you.",
+    "target": "BRIDGE_2_3"
+  },
+  {
+    "id": "A2_R_ENTITLE",
+    "type": "reflection",
+    "text": "It's natural to track what's 'fair'—especially when you work hard. But measuring what you feel owed can create a subtle sense of entitlement, draining your energy if reality doesn't match your expectations.",
+    "target": "BRIDGE_2_3"
+  },
+  {
+    "id": "BRIDGE_2_3",
+    "type": "bridge",
+    "text": "Finally, let's zoom out from your specific tasks and expectations, and look at the radius of your concern today.",
+    "target": "A3_OPEN"
+  },
+  {
+    "id": "A3_OPEN",
+    "type": "question",
+    "text": "When you think about the most stressful or significant moment of your day, who was at the center of the narrative?",
+    "options": [
+      { "label": "Just me—it was something I had to endure or achieve", "value": "just_me" },
+      { "label": "Me and my immediate manager/colleague", "value": "me_manager" },
+      { "label": "The broader team and our collective goals", "value": "broader_team" },
+      { "label": "The customer, end-user, or the ultimate mission", "value": "mission" }
+    ]
+  },
+  {
+    "id": "A3_D1",
+    "type": "decision",
+    "routing": [
+      { "condition": "A3_OPEN.answer in ['just_me', 'me_manager']", "target": "A3_Q_SELF" },
+      { "condition": "A3_OPEN.answer in ['broader_team', 'mission']", "target": "A3_Q_ALTRO" }
+    ]
+  },
+  {
+    "id": "A3_Q_SELF",
+    "type": "question",
+    "text": "It makes sense that you felt wrapped up in that moment. What would happen if you adopted a wider perspective on that same issue?",
+    "options": [
+      { "label": "I'd struggle, honestly; I'm too stressed by my own constraints", "value": "struggle_stress", "signal": "axis3:selfcentric" },
+      { "label": "I feel my problems need to be solved before I can worry about others", "value": "solve_mine_first", "signal": "axis3:selfcentric" },
+      { "label": "I might see that my colleague is under similar pressure", "value": "colleague_pressure", "signal": "axis3:altrocentric" },
+      { "label": "I'd realign my priorities with what's actually best for the project", "value": "realign_mission", "signal": "axis3:altrocentric" }
+    ]
+  },
+  {
+    "id": "A3_Q_ALTRO",
+    "type": "question",
+    "text": "Thinking beyond yourself takes energy. What enables you to hold a wider radius of concern like '{A3_OPEN.answer_label}'?",
+    "options": [
+      { "label": "I find a deeper sense of meaning when I connect my work to others", "value": "deeper_meaning", "signal": "axis3:altrocentric" },
+      { "label": "I recognize we only succeed or fail as a unit", "value": "unit_succeed", "signal": "axis3:altrocentric" },
+      { "label": "Honestly, I do it because it looks good to leadership", "value": "looks_good", "signal": "axis3:selfcentric" },
+      { "label": "I feel pressured to care about others even when I'm burnt out", "value": "pressured", "signal": "axis3:selfcentric" }
+    ]
+  },
+  {
+    "id": "A3_D2",
+    "type": "decision",
+    "routing": [
+      { "condition": "axis3.altrocentric >= axis3.selfcentric", "target": "A3_R_ALTRO" },
+      { "condition": "axis3.altrocentric < axis3.selfcentric", "target": "A3_R_SELF" }
+    ]
+  },
+  {
+    "id": "A3_R_ALTRO",
+    "type": "reflection",
+    "text": "Your radius of concern is wide. By holding others in view—whether the team or the customer—you transcend immediate self-interest. This altrocentric mindset often dilutes personal stress because you're connected to something larger.",
+    "target": "SUMMARY_PREP"
+  },
+  {
+    "id": "A3_R_SELF",
+    "type": "reflection",
+    "text": "When we operate highly self-centrically, every small friction feels like a personal threat. Notice tomorrow if widening your lens—asking 'What does the team need?'—actually lightens your personal burden.",
+    "target": "SUMMARY_PREP"
+  },
+  {
+    "id": "SUMMARY_PREP",
+    "type": "decision",
+    "routing": [
+      { "condition": "true", "target": "SUMMARY" }
+    ]
+  },
+  {
+    "id": "SUMMARY",
+    "type": "summary",
+    "text": "Let's summarize today:\n\nLocus: You leaned toward an {axis1.dominant} locus of control.\nOrientation: Your focus leaned toward {axis2.dominant}.\nRadius: Your perspective today was predominantly {axis3.dominant}.\n\nSmall, structured thinking builds better habits. Take these insights into tomorrow.",
+    "target": "END"
+  },
+  {
+    "id": "END",
+    "type": "end",
+    "text": "Session Complete. See you tomorrow."
+  }
+]
