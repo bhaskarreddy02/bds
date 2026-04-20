@@ -12,7 +12,7 @@ def generate_transcript(inputs, output_file, verbose=False):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         json_path = os.path.join(script_dir, '..', 'tree', 'reflection-tree.json')
         tree = agent.load_tree(json_path)
-        agent.run_agent(tree, verbose=verbose)
+        agent.run_agent(tree, verbose=verbose, chat_mode=True)
     except Exception as e:
         print("Error during execution:", e)
     

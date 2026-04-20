@@ -39,7 +39,8 @@
       { "label": "I adapted my approach when priorities shifted", "value": "internal_adapt", "signal": "axis1:internal" },
       { "label": "The environment or timing was favorable", "value": "external_favorable", "signal": "axis1:external" },
       { "label": "My team handled the hardest parts", "value": "external_team", "signal": "axis1:external" }
-    ]
+    ],
+    "target": "A1_D2"
   },
   {
     "id": "A1_Q_AGENCY_L",
@@ -50,7 +51,8 @@
       { "label": "I figured out a workaround to keep moving", "value": "internal_workaround", "signal": "axis1:internal" },
       { "label": "I waited for the person responsible to fix it", "value": "external_wait", "signal": "axis1:external" },
       { "label": "I felt stuck because the system is broken", "value": "external_stuck", "signal": "axis1:external" }
-    ]
+    ],
+    "target": "A1_D2"
   },
   {
     "id": "A1_D2",
@@ -113,7 +115,8 @@
       { "label": "I feel the organization owes me for the sacrifices I make", "value": "owes_me", "signal": "axis2:entitlement" },
       { "label": "I try to remind myself that recognition is earned, not guaranteed", "value": "earned_recog", "signal": "axis2:contribution" },
       { "label": "I realize my frustration comes from wanting my contribution to matter", "value": "want_matter", "signal": "axis2:contribution" }
-    ]
+    ],
+    "target": "A2_D2"
   },
   {
     "id": "A2_Q_CONTRIB",
@@ -124,7 +127,8 @@
       { "label": "Because the work simply needed to get done", "value": "work_done", "signal": "axis2:contribution" },
       { "label": "Because I wanted leadership to notice my extra effort", "value": "want_notice", "signal": "axis2:entitlement" },
       { "label": "Because it's unfair if I have to do it and others don't", "value": "unfair", "signal": "axis2:entitlement" }
-    ]
+    ],
+    "target": "A2_D2"
   },
   {
     "id": "A2_D2",
@@ -180,7 +184,8 @@
       { "label": "I feel my problems need to be solved before I can worry about others", "value": "solve_mine_first", "signal": "axis3:selfcentric" },
       { "label": "I might see that my colleague is under similar pressure", "value": "colleague_pressure", "signal": "axis3:altrocentric" },
       { "label": "I'd realign my priorities with what's actually best for the project", "value": "realign_mission", "signal": "axis3:altrocentric" }
-    ]
+    ],
+    "target": "A3_D2"
   },
   {
     "id": "A3_Q_ALTRO",
@@ -191,7 +196,8 @@
       { "label": "I recognize we only succeed or fail as a unit", "value": "unit_succeed", "signal": "axis3:altrocentric" },
       { "label": "Honestly, I do it because it looks good to leadership", "value": "looks_good", "signal": "axis3:selfcentric" },
       { "label": "I feel pressured to care about others even when I'm burnt out", "value": "pressured", "signal": "axis3:selfcentric" }
-    ]
+    ],
+    "target": "A3_D2"
   },
   {
     "id": "A3_D2",

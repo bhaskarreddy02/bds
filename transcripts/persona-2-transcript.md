@@ -1,80 +1,46 @@
 # Reflection Session Transcript
 ```
+**Coach:** Good evening. Welcome to your daily reflection. Let's look at your day.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Good evening. Welcome to your daily reflection. Let's look at your day.
+**Coach:** How would you describe today generally?
 
-[Press Enter to continue]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How would you describe today generally?
-  1) Productive and largely went as expected
-  2) I adjusted to some unexpected challenges
-  3) Frustrating and chaotic
-  4) Mostly dealing with other people's messes
+**You:** Productive and largely went as expected
 
-Select an option (1-4): 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-During a moment that went well today, what drove that positive outcome?
-  1) I anticipated what was needed and prepared well
-  2) I adapted my approach when priorities shifted
-  3) The environment or timing was favorable
-  4) My team handled the hardest parts
+**Coach:** During a moment that went well today, what drove that positive outcome?
 
-Select an option (1-4): 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-When things got difficult, what was your initial instinct?
-  1) I looked for what I could control and salvaged it
-  2) I figured out a workaround to keep moving
-  3) I waited for the person responsible to fix it
-  4) I felt stuck because the system is broken
+**You:** I anticipated what was needed and prepared well
 
-Select an option (1-4): Please enter a number.
+**Coach:** You chose 'I anticipated what was needed and prepared well'. You're seeing your hand in how today played out. Even when things weren't perfect, you stayed in the driver's seat. That's a strong internal locus of control.
 
-Select an option (1-4): Please enter a number.
+**Coach:** Now let's shift from how much agency you felt todayâ€”to what you gave and expected in return.
 
-Select an option (1-4): 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-You chose 'I anticipated what was needed and prepared well'. You're seeing your hand in how today played out. Even when things weren't perfect, you stayed in the driver's seat. That's a strong internal locus of control.
+**Coach:** Think about an interaction you had today regarding work distribution or recognition. How did it feel?
 
-[Press Enter to continue]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Now let's shift from how much agency you felt todayâ€”to what you gave and expected in return.
+**You:** I stepped in to help someone without being asked
 
-[Press Enter to continue]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Think about an interaction you had today regarding work distribution or recognition. How did it feel?
-  1) I did work that went largely unacknowledged
-  2) I felt annoyed that I carry more weight than some others
-  3) I stepped in to help someone without being asked
-  4) I focused on getting my deliverables over the line
+**Coach:** You chose 'I stepped in to help someone without being asked'. Which of these describes why you took that approach?
 
-Select an option (1-4): Please enter a number.
+**You:** Because building up the team makes all of our work better
 
-Select an option (1-4): 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-You chose 'I stepped in to help someone without being asked'. Which of these describes why you took that approach?
-  1) Because building up the team makes all of our work better
-  2) Because the work simply needed to get done
-  3) Because I wanted leadership to notice my extra effort
-  4) Because it's unfair if I have to do it and others don't
+**Coach:** You chose 'I stepped in to help someone without being asked' â€” and your rationale was 'Because building up the team makes all of our work better'. That's the definition of contribution. You are focusing on what you can give to the system and the team, rather than waiting to see what the system will give you.
 
-Select an option (1-4): 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-You chose 'I stepped in to help someone without being asked' â€” and your rationale was 'Because the work simply needed to get done'. That's the definition of contribution. You are focusing on what you can give to the system and the team, rather than waiting to see what the system will give you.
+**Coach:** Finally, let's zoom out from your specific tasks and expectations, and look at the radius of your concern today.
 
-[Press Enter to continue]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Finally, let's zoom out from your specific tasks and expectations, and look at the radius of your concern today.
+**Coach:** When you think about the most stressful or significant moment of your day, who was at the center of the narrative?
 
-[Press Enter to continue]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-When you think about the most stressful or significant moment of your day, who was at the center of the narrative?
-  1) Just meâ€”it was something I had to endure or achieve
-  2) Me and my immediate manager/colleague
-  3) The broader team and our collective goals
-  4) The customer, end-user, or the ultimate mission
+**You:** The broader team and our collective goals
 
-Select an option (1-4): Please enter a number.
+**Coach:** Thinking beyond yourself takes energy. What enables you to hold a wider radius of concern like 'The broader team and our collective goals'?
 
-Select an option (1-4): Error during execution: EOF when reading a line
+**You:** I recognize we only succeed or fail as a unit
+
+**Coach:** Your radius of concern is wide. By holding others in view, you transcend immediate self-interest. This altrocentric mindset often dilutes personal stress because you're connected to something larger.
+
+**Coach:** When you started this session, you were focused on 'Productive and largely went as expected'. By the end, you're considering 'The broader team and our collective goals'. That's movement. That's reflection working.
+
+**Coach:** You see your choices. You give without keeping score. And you think about the team and the mission. That's rare. That's the person everyone wants to work with.
+The trap: you might burn out by giving too much. Tomorrow, notice: are you building something, or just filling holes others left?
+Stay curious about what you're building, not just what you're fixing.
+
+Session Complete. See you tomorrow.
 ```
