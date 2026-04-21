@@ -1,6 +1,13 @@
 # Reflection Tree Diagram
 
-This diagram maps the possible paths an employee could take through the deterministic reflection tool.
+This visual map shows all the different paths someone might take through our reflection tool. It's like a choose-your-own-adventure story where your answers determine what questions come next and what insights you get at the end.
+
+The diagram uses different colors to show the types of steps:
+- **Blue boxes**: Questions that ask you to reflect on your experiences
+- **Orange dashed boxes**: Decision points where the system checks your answers to choose the next path
+- **Green boxes**: Reflection moments where you get personalized feedback
+- **Purple boxes**: Transition points that move you between different parts of the process
+- **Gray boxes**: Start and end points
 
 ```mermaid
 graph TD
