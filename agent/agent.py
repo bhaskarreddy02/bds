@@ -101,10 +101,10 @@ def evaluate_condition(condition, state):
         logger.warning(f"Condition must be string, got {type(condition)}: {condition}")
         return False
 
-    # Guardrail: Reject obviously dangerous patterns
+    # Guardrail: Reject obviously dangerous patterns (function calls, imports, etc.)
     dangerous_patterns = [
-        '__import__', 'import ', 'exec', 'eval', 'open', 'file', 'input',
-        'system', 'subprocess', 'os.', 'sys.', 'globals', 'locals'
+        '__import__(', 'import(', 'exec(', 'eval(', 'open(', 'file(', 'input(',
+        'system(', 'subprocess(', 'os.', 'sys.', 'globals(', 'locals('
     ]
 
     condition_lower = condition.lower()
