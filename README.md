@@ -1,69 +1,40 @@
 # Practice-Driven Growth Management System: Reflection Tree
 
-Hey there! This is a cool tool we built for helping teams reflect on their growth and interactions in a structured way. It's like a guided conversation that helps people think about their work experiences and how they approach challenges.
+This repository contains the deterministic reflection tree assignment for DeepThought Growth Teams.
 
-## What's in Here
+## Directory Structure
 
-- **/tree/** - This folder has the heart of the system
-  - `reflection-tree.json` - The main data file that defines all the conversation paths and logic
-  - `tree-diagram.md` - A visual map showing how the conversation flows (like a flowchart)
-- **/agent/** - The code that makes it all work
-  - `agent.py` - A simple command-line tool that walks you through the reflection process
-  - `generator.py` - A helper script for testing different conversation paths
-- **/transcripts/** - Examples of what the conversations look like
-  - `persona-1-transcript.md` - Shows what happens when someone focuses mostly on themselves
-  - `persona-2-transcript.md` - Shows what happens when someone thinks about the team first
-- `write-up.md` - The thinking behind why we built this and how it works psychologically
-- `README.md` - You're reading this right now!
+- **/tree/**
+  - `reflection-tree.json`: The core static JSON file acting as the deterministic database for the session.
+  - `tree-diagram.md`: A visual representation of the node paths and conditional branches via Mermaid syntax.
+- **/agent/**
+  - `agent.py`: A CLI Python application that executes the JSON logic natively.
+  - `generator.py`: A wrapper script that automates persona pathing.
+- **/transcripts/**
+  - `persona-1-transcript.md`: A simulated session representing a self-centric/entitled/external locus persona.
+  - `persona-2-transcript.md`: A simulated session representing an altrocentric/contributing/internal locus persona.
+- `write-up.md`: The 2-page psychological grounding and design rationale document.
+- `README.md`: You are here.
 
-## How to Try It Out (Part B)
+## Running the Agent (Part B)
 
-You can run this on any computer since it doesn't need internet or fancy AI - it's all self-contained. We've included a Python version that's easy to use.
-
-Just open a terminal and run:
+The tree can be consumed by any structured parsing engine. We have included a native Python CLI implementation.
+Because it's deterministic and relies on no external APIs or LLMs at runtime, you can run it directly:
 
 ```bash
 cd agent
 python agent.py
 ```
 
-### What Happens When You Run It
+### Navigating the Tree
+The agent will print narrative text followed by numerical options.
+- The `[Press Enter to continue]` prompts are mapped to `reflection` and `bridge` node types giving the user time to actually process the text.
+- Enter a numerical option corresponding to the lists when asked.
+- At the end, the engine performs variable interpolation for `<summary>` and `<reflection>` nodes using the `signal` state map.
 
-The tool will show you some text to read and think about, then give you choices as numbers.
-- When it says `[Press Enter to continue]`, just hit enter - it's giving you time to absorb what you just read
-- When it shows numbered options, type the number that matches what you're thinking
-- At the end, it pulls together everything you chose into a personalized summary
-
-## How the System Works (For Coders)
-If you want to build your own version or understand the logic, here are the key things the system does:
-1. **Checks Conditions**: It looks at your answers and uses them to decide which path to take next
-2. **Follows Rules**: When conditions match, it jumps to the right next step automatically
-3. **Keeps Score**: Your choices add up points in different categories that shape the final summary
-4. **Fills in Blanks**: It takes your answers and plugs them into the summary text
-
-## Safety and Guardrails
-
-The system includes comprehensive guardrails to prevent errors and ensure reliable operation:
-
-**Input Validation**:
-- User inputs are validated for correct format and range
-- Invalid selections are rejected with clear error messages
-- Maximum retry limits prevent infinite input loops
-
-**Data Integrity**:
-- JSON tree structure is validated on load
-- Node IDs are checked for uniqueness
-- Required fields are verified for all nodes
-- Signal formats are validated before processing
-
-**Code Security**:
-- Condition evaluation uses restricted execution environment
-- Dangerous code patterns are blocked (imports, system calls, etc.)
-- Only safe mathematical and logical operations are allowed
-
-**Error Handling**:
-- Graceful degradation when unexpected errors occur
-- Comprehensive logging for debugging and monitoring
-- Session timeouts prevent infinite loops
-- User interruptions are handled cleanly
-
+## Tree Parsing Logic
+If you are writing your own agent to interpret this tree, the engine must respect four core properties:
+1. **String Evaluation**: Conditions found within `routing` blocks dictate edge pathing. The conditionals refer directly to the tree's accumulated `answers` dictionary and the `signals` scoreboard. 
+2. **Deterministic Targeting**: If `routing[]` finds a match, the engine automatically branches to the specified `target` ID.
+3. **Signal Accumulation**: When a user selects an option with an associated `"signal"` key, the engine increments that key in global context.
+4. **Interpolation**: Handled via `{nodeId.property}` substitution
